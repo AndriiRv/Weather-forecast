@@ -1,0 +1,3 @@
+rootProject.name = 'weatherforecast'
+include 'scheduler'
+include 'forecast'
