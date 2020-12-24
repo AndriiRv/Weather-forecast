@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.7.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.example.weatherforecast'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.10.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.flywaydb:flyway-core'
+
+    testImplementation 'org.testng:testng:7.0.0'
+    testImplementation 'org.mockito:mockito-core:3.5.0'
+}
+
+test {
+    useTestNG {}
+}
