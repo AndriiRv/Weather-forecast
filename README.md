@@ -31,3 +31,4 @@ Next, add city by name of city and country abbreviation.
 <i>cities.json</i> in resources for help.
 <br/>
 <br>After that, start <i>SchedulerApplication</i>.
+After added city to db, <i>Scheduler</> itself will put city id to endpoint <i>weather-forecast/city{id}</i> in <i>forecast</i>
