@@ -52,7 +52,8 @@ public class CommonCityServiceImpl implements CommonCityService {
         List<CityDto> citiesOfEngland = findAllInDB(englandCityService, ENGLAND_ABBREVIATION);
 
         List<CityDto> result = Stream.concat(citiesOfUkraine.stream(), citiesOfEngland.stream()).collect(Collectors.toList());
-        LOGGER.info(String.valueOf(result));
+
+        showSelectedCitiesWithNamesAndCountries(result);
         return result;
     }
 
@@ -65,7 +66,7 @@ public class CommonCityServiceImpl implements CommonCityService {
             result = findAllInDB(englandCityService, ENGLAND_ABBREVIATION);
         }
 
-        LOGGER.info(String.valueOf(result));
+        showSelectedCitiesWithNamesAndCountries(result);
         return result;
     }
 
@@ -73,6 +74,13 @@ public class CommonCityServiceImpl implements CommonCityService {
         return cityService.findAll().stream()
                 .map(e -> converter.convertToCityDto(e, abbreviation))
                 .collect(Collectors.toList());
+    }
+
+    private void showSelectedCitiesWithNamesAndCountries(List<CityDto> result) {
+        List<String> citiesWithNamesAndCountries = result.stream()
+                .map(e -> "(" + e.getName() + ", " + e.getCountry() + ")")
+                .collect(Collectors.toList());
+        LOGGER.info("Fetched of the cities: {}", citiesWithNamesAndCountries);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class WeatherForecastSchedulerService {
         this.restTemplate = new RestTemplate();
     }
 
-    @Scheduled(cron = "*/86400 * * * * *")
+    @Scheduled(fixedRate = 86400000)
     private void getForecast() throws JsonProcessingException {
         ResponseEntity<String> request = getCities();
 
@@ -71,7 +71,7 @@ public class WeatherForecastSchedulerService {
         return headers;
     }
 
-    @Scheduled(cron = "*/604800 * * * * *")
+    @Scheduled(fixedRate = 604800000)
     private void getBackup() {
         restTemplate.exchange(GET_BACKUP_URL, HttpMethod.GET, null, Object.class);
         LOGGER.info(INFO_ABOUT_EXECUTE_REQUEST, GET_BACKUP_URL);
