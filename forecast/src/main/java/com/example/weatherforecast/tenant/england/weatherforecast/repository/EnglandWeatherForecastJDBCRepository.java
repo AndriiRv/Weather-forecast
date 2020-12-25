@@ -1,10 +1,10 @@
 package com.example.weatherforecast.tenant.england.weatherforecast.repository;
 
-import com.example.weatherforecast.tenant.common.model.WeatherForecastDto;
+import com.example.weatherforecast.tenant.common.model.WeatherForecast;
 
 import java.util.List;
 
 public interface EnglandWeatherForecastJDBCRepository {
 
-    List<WeatherForecastDto> findAll();
+    List<WeatherForecast> findAll();
 }

@@ -32,6 +32,8 @@ public class ForecastService {
     private final CityService englandCityService;
     private final CityService ukraineCityService;
 
+    private final RestTemplate restTemplate;
+
     public ForecastService(@Value("${weather-forecast.appid}") String appId,
                            @Qualifier("englandWeatherForecastServiceImpl") WeatherForecastService englandWeatherForecastService,
                            @Qualifier("ukraineWeatherForecastServiceImpl") WeatherForecastService ukraineWeatherForecastService,
@@ -42,11 +44,12 @@ public class ForecastService {
         this.ukraineWeatherForecastService = ukraineWeatherForecastService;
         this.englandCityService = englandCityService;
         this.ukraineCityService = ukraineCityService;
+
+        this.restTemplate = new RestTemplate();
     }
 
-    public void getForecastBy(int id, String tenantId) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(
+    public void getCurrentForecastBy(int id, String tenantId) {
+        ResponseEntity<String> request = restTemplate.exchange(
                 "http://api.openweathermap.org/data/2.5/weather?id=" + id + "&units=metric&appid=" + appId,
                 HttpMethod.GET,
                 null,
@@ -55,12 +58,16 @@ public class ForecastService {
 
         ObjectNode node;
         try {
-            node = new ObjectMapper().readValue(Objects.requireNonNull(response.getBody()), ObjectNode.class);
+            node = new ObjectMapper().readValue(Objects.requireNonNull(request.getBody()), ObjectNode.class);
             String temperature = Objects.requireNonNull(node).get("main").toString();
             saveToTenant(id, tenantId, temperature);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void getForecastForCertainPeriodBy(int id, String tenantId, String startDate, String endDate) {
+        //TODO find free weather forecast API with fetch forecast for certain period
     }
 
     private void saveToTenant(int cityId, String tenantId, String temperature) {

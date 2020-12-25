@@ -75,4 +75,14 @@ public class WeatherForecast {
     public int hashCode() {
         return Objects.hash(id, idCity, date, temperature);
     }
+
+    @Override
+    public String toString() {
+        return "WeatherForecast{" +
+                "id=" + id +
+                ", idCity=" + idCity +
+                ", date=" + date +
+                ", temperature='" + temperature + '\'' +
+                '}';
+    }
 }

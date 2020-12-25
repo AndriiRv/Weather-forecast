@@ -1,6 +1,6 @@
 package com.example.weatherforecast.tenant.england.weatherforecast.repository;
 
-import com.example.weatherforecast.tenant.common.model.WeatherForecastDto;
+import com.example.weatherforecast.tenant.common.model.WeatherForecast;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,11 +19,11 @@ public class EnglandWeatherForecastJDBCRepositoryImpl implements EnglandWeatherF
     }
 
     @Override
-    public List<WeatherForecastDto> findAll() {
+    public List<WeatherForecast> findAll() {
         String sql = "" +
-                "SELECT c.name, wf.date, wf.temperature " +
+                "SELECT * " +
                 "FROM weather_forecast AS wf " +
                 "INNER JOIN city AS C ON c.id = wf.id_city";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WeatherForecastDto.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WeatherForecast.class));
     }
 }

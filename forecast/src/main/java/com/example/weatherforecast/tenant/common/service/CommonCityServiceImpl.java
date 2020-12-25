@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -50,17 +50,23 @@ public class CommonCityServiceImpl implements CommonCityService {
     public List<CityDto> findAll() {
         List<CityDto> citiesOfUkraine = findAllInDB(ukraineCityService, UKRAINE_ABBREVIATION);
         List<CityDto> citiesOfEngland = findAllInDB(englandCityService, ENGLAND_ABBREVIATION);
-        return Stream.concat(citiesOfUkraine.stream(), citiesOfEngland.stream()).collect(Collectors.toList());
+
+        List<CityDto> result = Stream.concat(citiesOfUkraine.stream(), citiesOfEngland.stream()).collect(Collectors.toList());
+        LOGGER.info(String.valueOf(result));
+        return result;
     }
 
     @Override
     public List<CityDto> findAllByCountry(String countryAbbreviation) {
+        List<CityDto> result = new ArrayList<>();
         if (countryAbbreviation.equalsIgnoreCase(UKRAINE_ABBREVIATION)) {
-            return findAllInDB(ukraineCityService, UKRAINE_ABBREVIATION);
+            result = findAllInDB(ukraineCityService, UKRAINE_ABBREVIATION);
         } else if (countryAbbreviation.equalsIgnoreCase(ENGLAND_ABBREVIATION)) {
-            return findAllInDB(englandCityService, ENGLAND_ABBREVIATION);
+            result = findAllInDB(englandCityService, ENGLAND_ABBREVIATION);
         }
-        return Collections.emptyList();
+
+        LOGGER.info(String.valueOf(result));
+        return result;
     }
 
     private List<CityDto> findAllInDB(CityService cityService, String abbreviation) {

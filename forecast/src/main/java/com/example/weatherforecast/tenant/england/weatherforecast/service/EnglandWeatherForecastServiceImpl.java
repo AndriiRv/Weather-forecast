@@ -1,12 +1,8 @@
 package com.example.weatherforecast.tenant.england.weatherforecast.service;
 
-import com.example.weatherforecast.tenant.common.model.WeatherForecastDto;
+import com.example.weatherforecast.tenant.common.model.WeatherForecast;
 import com.example.weatherforecast.tenant.england.weatherforecast.repository.EnglandWeatherForecastJDBCRepository;
 import com.example.weatherforecast.tenant.england.weatherforecast.repository.EnglandWeatherForecastJPARepository;
-import com.example.weatherforecast.tenant.common.model.WeatherForecast;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,7 +32,7 @@ public class EnglandWeatherForecastServiceImpl implements EnglandWeatherForecast
     }
 
     @Override
-    public List<WeatherForecastDto> findAll() {
+    public List<WeatherForecast> findAll() {
         return englandWeatherForecastJDBCRepository.findAll();
     }
 

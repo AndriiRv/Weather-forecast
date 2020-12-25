@@ -48,4 +48,13 @@ public class CityDto {
     public int hashCode() {
         return Objects.hash(id, name, country);
     }
+
+    @Override
+    public String toString() {
+        return "CityDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

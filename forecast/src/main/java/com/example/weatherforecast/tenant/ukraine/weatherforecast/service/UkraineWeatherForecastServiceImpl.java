@@ -1,7 +1,6 @@
 package com.example.weatherforecast.tenant.ukraine.weatherforecast.service;
 
 import com.example.weatherforecast.tenant.common.model.WeatherForecast;
-import com.example.weatherforecast.tenant.common.model.WeatherForecastDto;
 import com.example.weatherforecast.tenant.ukraine.weatherforecast.repository.UkraineWeatherForecastJDBCRepository;
 import com.example.weatherforecast.tenant.ukraine.weatherforecast.repository.UkraineWeatherForecastJPARepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,7 @@ public class UkraineWeatherForecastServiceImpl implements UkraineWeatherForecast
     }
 
     @Override
-    public List<WeatherForecastDto> findAll() {
+    public List<WeatherForecast> findAll() {
         return ukraineWeatherForecastJDBCRepository.findAll();
     }
 

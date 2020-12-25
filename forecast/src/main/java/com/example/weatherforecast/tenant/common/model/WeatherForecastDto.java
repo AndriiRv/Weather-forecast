@@ -46,4 +46,13 @@ public class WeatherForecastDto {
     public int hashCode() {
         return Objects.hash(name, date, temperature);
     }
+
+    @Override
+    public String toString() {
+        return "WeatherForecastDto{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", temperature='" + temperature + '\'' +
+                '}';
+    }
 }
