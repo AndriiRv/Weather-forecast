@@ -24,7 +24,7 @@ Directly, work with forecast service (below endpoints can called via external se
 <ul>
     <li>By <b>GET</b> method <i>weather-forecast/city/{id}</i><b> - for fetch weather forecast by city</b>.</li>
     <li>By <b>GET</b> method <i>weather-forecast/city/{id}/weather</i><b> - for fetch weather forecast by city with date period</b>.</li>
-    <li>By <b>GET</b> method <i>weather-forecast/backup</i><b> - for execute backup of database in migration files</b>.</li>
+    <li>By <b>GET</b> method <i>weather-forecast/backup</i><b> - for execute backup of database in migration files</b>. Migrations will be save in root of project.</li>
 </ul>
 
 Correct cities names can see in <i>cities.json</i> in resources in <i>forecast</i> module.
